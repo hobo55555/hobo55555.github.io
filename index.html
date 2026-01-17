@@ -1,108 +1,166 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页 | [你的名字]</title>
+    <title>Tongyu Wu | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #5c2d91; /* 清华紫风格 */
+            --primary-color: #5c2d91; /* Tsinghua Purple */
             --text-color: #333;
-            --bg-color: #f9f9f9;
-            --section-bg: #fff;
+            --bg-overlay: rgba(255, 255, 255, 0.92); /* Glass effect opacity */
+            --link-color: #0056b3;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--bg-color);
             margin: 0;
             padding: 0;
+            /* 背景图设置 */
+            background-image: url('background.jpg'); /* 替换为你的背景图文件名 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: var(--bg-overlay);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px); /* 毛玻璃模糊效果 */
         }
 
+        /* Header & Avatar */
         header {
             text-align: center;
-            padding: 60px 0;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
         }
 
         header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        header p.subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: #555;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
             color: var(--primary-color);
         }
 
-        header p {
-            font-size: 1.2rem;
-            color: #666;
-        }
-
+        /* Sections */
         .section {
-            background: var(--section-bg);
-            padding: 30px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
         }
 
         h2 {
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 1.5rem;
+            color: var(--primary-color);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
         }
 
         .item {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
         }
 
         .item h3 {
-            margin-bottom: 5px;
-            font-size: 1.2rem;
+            margin: 0 0 5px 0;
+            font-size: 1.3rem;
+            color: #333;
         }
 
         .item .meta {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 10px;
             font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+            min-width: 150px;
+            text-align: right;
         }
 
-        .tags span {
-            display: inline-block;
-            background: #e0e0e0;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-right: 5px;
+        .item .role {
+            font-weight: 600;
+            color: #444;
+            display: block;
             margin-bottom: 5px;
         }
 
+        ul {
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* Tags */
+        .tags span {
+            display: inline-block;
+            background: #eef2f5;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            border: 1px solid #e1e4e8;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 40px 0;
-            color: #888;
             font-size: 0.9rem;
+            color: #777;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
         }
 
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
+        /* Mobile Response */
         @media (max-width: 600px) {
-            header { padding: 40px 0; }
-            header h1 { font-size: 2rem; }
+            .container { margin: 0; border-radius: 0; padding: 20px; }
+            .item-header { flex-direction: column; }
+            .item .meta { text-align: left; margin-top: 2px; }
         }
     </style>
 </head>
@@ -110,86 +168,170 @@
 
     <div class="container">
         <header>
-            <h1>[你的名字]</h1>
-            <p>清华大学深圳国际研究生院 · 数据科学与信息技术硕士</p>
-            <p>Email: [your_email@example.com] | GitHub: <a href="https://github.com/[your_username]">@[your_username]</a></p>
+            <img src="avatar.jpg" alt="Tongyu Wu" class="avatar">
+            <h1>Tongyu Wu</h1>
+            <p class="subtitle">Master Candidate in Data Science @ Tsinghua University</p>
+            
+            <div class="contact-info">
+                <a href="mailto:tongyuwu14159@outlook.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
         </header>
 
         <div class="section">
-            <h2>关于我</h2>
+            <h2>About Me</h2>
             <p>
-                我是清华大学深圳国际研究生院（Tsinghua SIGS）2025级硕士研究生。
-                拥有金融与理工科的复合背景，目前正致力于将数据科学方法应用于物理仿真与量化分析。
-                我的目标是结合算法能力与行业洞察，解决复杂的跨学科问题。
+                I am a Master's student at Tsinghua Shenzhen International Graduate School (SIGS), specializing in Data Science and Information Technology. 
+                With a strong academic foundation in Economics (GPA 4.4/5.0) and practical experience in Finance, I am currently pivoting towards <strong>Computational Physics</strong> and <strong>Algorithm Engineering</strong>.
+            </p>
+            <p>
+                My current research focuses on metamaterial simulation (TARC) using Python and EnergyPlus. I am passionate about bridging the gap between data science algorithms and physical world applications.
             </p>
         </div>
 
         <div class="section">
-            <h2>教育经历</h2>
+            <h2>Education</h2>
             <div class="item">
-                <h3>清华大学深圳国际研究生院 (Tsinghua SIGS)</h3>
-                <div class="meta">2025 - 2028 (预计) | 硕士 | 数据科学和信息技术</div>
-                <p><strong>核心课程/研究方向：</strong> 物理纳米器件仿真、超材料（Metamaterials）、辐射制冷技术。</p>
+                <div class="item-header">
+                    <h3>Tsinghua University</h3>
+                    <span class="meta">Shenzhen, China | 2025.09 - 2028.06</span>
+                </div>
+                <span class="role">M.S. in Data Science and Information Technology</span>
             </div>
+
             <div class="item">
-                <h3>[你的本科学校名称]</h3>
-                <div class="meta">[开始年份] - [结束年份] | 学士 | 金融学/相关专业</div>
+                <div class="item-header">
+                    <h3>Nanjing University</h3>
+                    <span class="meta">Nanjing, China | 2021.09 - 2025.06</span>
+                </div>
+                <span class="role">B.Econ. in Industrial Economics</span>
+                <ul>
+                    <li><strong>GPA:</strong> 4.4 / 5.0 (Top Ranking)</li>
+                    <li><strong>Awards:</strong> National Scholarship equivalent honors, Outstanding Thesis.</li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3>Tohoku University</h3>
+                    <span class="meta">Sendai, Japan | 2024.04 - 2024.09</span>
+                </div>
+                <span class="role">Exchange Student (IPLA Program)</span>
             </div>
         </div>
 
         <div class="section">
-            <h2>项目与研究</h2>
+            <h2>Projects</h2>
             
             <div class="item">
-                <h3>TARC_AutoSim: 自动化建筑能耗仿真系统</h3>
-                <div class="meta">2025.12 - 至今 | Python, EnergyPlus, OpenStudio</div>
-                <p>针对温度自适应辐射制冷涂层（TARC）开发的自动化仿真框架。</p>
+                <div class="item-header">
+                    <h3>TARC_AutoSim: Automated Building Energy Simulation</h3>
+                    <span class="meta">2025.12 - Present</span>
+                </div>
+                <p>Developing a Python-based framework to simulate Temperature-Adaptive Radiative Coating (TARC) materials.</p>
                 <ul>
-                    <li>利用 <code>eppy</code> 库操作 EnergyPlus IDF 文件，实现参数化建模。</li>
-                    <li>构建 Python 脚本自动化运行全年能耗模拟，分析不同气候下的节能潜力。</li>
-                    <li>涉及技术：SketchUp 建模, OpenStudio 接口, Python 数据分析。</li>
+                    <li>Automated EnergyPlus IDF file modification using the <code>eppy</code> library to inject metamaterial parameters.</li>
+                    <li>Modeled building energy consumption across different climate zones to evaluate energy-saving potential.</li>
                 </ul>
                 <div class="tags">
                     <span>Python</span>
                     <span>EnergyPlus</span>
+                    <span>OpenStudio</span>
                     <span>Simulation</span>
                 </div>
             </div>
 
             <div class="item">
-                <h3>超材料辐射制冷研究 (Dong-Lab)</h3>
-                <div class="meta">2025.09 - 至今 | 实验室研究</div>
-                <p>研究基于超材料的辐射制冷技术在建筑节能中的应用，负责热阻网络分析与论文图表绘制。</p>
+                <div class="item-header">
+                    <h3>Data-Driven Prediction Model Optimization</h3>
+                    <span class="meta">National Innovation Project (Leader) | 2022.12 - 2024.11</span>
+                </div>
+                <p>Addressed model deterioration caused by concept drift in charge prediction scenarios.</p>
+                <ul>
+                    <li>Designed an online evaluation index and maintenance warning mechanism.</li>
+                    <li>Proposed a combined model update strategy to improve adaptive capabilities of the algorithm.</li>
+                </ul>
+                <div class="tags">
+                    <span>Machine Learning</span>
+                    <span>Concept Drift</span>
+                    <span>Model Optimization</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3>Dormitory Allocation System Algorithm</h3>
+                    <span class="meta">Nanjing University | 2022.03 - 2022.07</span>
+                </div>
+                <p>Developed an allocation system for 5,000+ incoming freshmen.</p>
+                <ul>
+                    <li>Implemented <strong>K-means clustering</strong> and greedy algorithms to match students based on lifestyle habits.</li>
+                    <li>Optimized feature weights through feedback from 100+ users.</li>
+                </ul>
+                <div class="tags">
+                    <span>Python</span>
+                    <span>K-means</span>
+                    <span>Algorithms</span>
+                </div>
             </div>
         </div>
 
         <div class="section">
-            <h2>工作与实习经历</h2>
+            <h2>Experience</h2>
+            
             <div class="item">
-                <h3>[美元基金名称] | 投研实习生</h3>
-                <div class="meta">2025.10 - 至今 | 二级市场硬件方向</div>
+                <div class="item-header">
+                    <h3>Songhe Capital</h3>
+                    <span class="meta">Shenzhen | 2025.06 - 2025.09</span>
+                </div>
+                <span class="role">Investment Intern (AI & Intelligent Manufacturing)</span>
                 <ul>
-                    <li>负责光模块与激光雷达产业链研究，覆盖 Fujikura, Sumitomo 等海外标的。</li>
-                    <li>深入分析 EML, CW-LD, VCSEL 等激光芯片技术路线及市场格局。</li>
-                    <li>撰写 Investment Memo，搭建公司估值模型。</li>
+                    <li>Conducted due diligence on hyperspectral satellite and edge computing companies.</li>
+                    <li>Assessed potential investment targets in robotics and car electronics sectors.</li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3>Industrial Securities</h3>
+                    <span class="meta">Remote | 2022.10 - 2023.03</span>
+                </div>
+                <span class="role">Research Intern (Defense & Military Group)</span>
+                <ul>
+                    <li>Researched Additive Manufacturing (3D Printing) industry, focusing on BLT (Bright Laser Technologies).</li>
+                    <li>Authored in-depth reports on industry supply chains and competitive landscapes.</li>
                 </ul>
             </div>
         </div>
 
         <div class="section">
-            <h2>技能栈</h2>
-            <div class="tags">
-                <span>Python (Pandas, Numpy)</span>
-                <span>EnergyPlus/OpenStudio</span>
-                <span>SketchUp</span>
-                <span>Financial Modeling</span>
-                <span>Investment Research</span>
-                <span>LaTeX</span>
+            <h2>Honors & Skills</h2>
+            <div class="item">
+                <strong>Honors:</strong>
+                <ul>
+                    <li>China Mobile "Wutong Cup" Big Data Innovation Competition - <strong>National 1st Prize</strong></li>
+                    <li>"Citi Cup" Financial Innovation Application Competition - <strong>National 2nd Prize</strong></li>
+                    <li>National College Mathematics Competition - <strong>2nd Prize</strong></li>
+                </ul>
+            </div>
+            <div class="item">
+                <strong>Tech Stack:</strong>
+                <div class="tags">
+                    <span>Python</span>
+                    <span>SQL</span>
+                    <span>C</span>
+                    <span>EnergyPlus</span>
+                    <span>Wind/iFinD</span>
+                    <span>LaTeX</span>
+                </div>
+            </div>
+            <div class="item">
+                <strong>Languages:</strong> Chinese (Native), English (IELTS 6.5), Japanese (Basic).
             </div>
         </div>
 
         <footer>
-            <p>&copy; 2026 [你的名字]. Hosted on GitHub Pages.</p>
+            <p>&copy; 2026 Tongyu Wu. All rights reserved.</p>
         </footer>
     </div>
 
