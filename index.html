@@ -3,291 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tongyu Wu | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Tongyu Wu | Data Science & Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-color: #5c2d91; /* Tsinghua Purple */
-            --text-color: #333;
-            --bg-overlay: rgba(255, 255, 255, 0.92);
-            --link-color: #0056b3;
+            /* 配色方案：深邃、科技、优雅 */
+            --primary-accent: #6c5ce7; /* 更有活力的紫色 */
+            --secondary-accent: #00cec9; /* 科技青，用于高亮 */
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg-glass-strong: rgba(255, 255, 255, 0.95);
+            --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
             margin: 0;
             padding: 0;
+            /* 背景图处理 */
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 40px;
-            background-color: var(--bg-overlay);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
+        /* 页面遮罩，增加文字可读性 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(240, 243, 250, 0.3); /* 淡淡的蓝色遮罩 */
+            z-index: -1;
         }
 
-        /* Header */
-        header {
+        .layout-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 320px 1fr; /* 左窄右宽 */
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* === 左侧边栏 (Profile Sidebar) === */
+        .sidebar {
+            background: var(--bg-glass-strong);
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 30px;
+            position: sticky;
+            top: 40px; /* 随页面滚动悬浮 */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-soft);
         }
 
         .avatar {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            margin-bottom: 15px;
+            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.2);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
         }
 
-        header h1 {
-            font-size: 2.2rem;
-            margin: 10px 0;
-            color: #2c3e50;
+        .avatar:hover {
+            transform: scale(1.05);
         }
 
-        header p.subtitle {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 15px;
+        .sidebar h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
         }
 
-        .contact-info a {
-            color: #666;
+        .sidebar .role {
+            font-size: 0.95rem;
+            color: var(--primary-accent);
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f1f2f6;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 1rem;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .contact-info a:hover {
-            color: var(--primary-color);
+        .social-btn:hover {
+            background: var(--primary-accent);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
         }
 
-        /* Sections */
-        .section {
-            margin-bottom: 35px;
+        .quick-info {
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+        
+        .quick-info div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quick-info i {
+            width: 20px;
+            text-align: center;
+            color: var(--primary-accent);
+        }
+
+        /* === 右侧主内容 (Main Content) === */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-glass);
+            padding: 35px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            background: var(--bg-glass-strong);
         }
 
         h2 {
-            color: var(--primary-color);
-            border-left: 4px solid var(--primary-color);
-            padding-left: 12px;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            color: var(--primary-accent);
         }
 
-        .item {
-            margin-bottom: 20px;
+        /* 经历列表样式 */
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #e1e4e8;
         }
 
-        .item-header {
+        .experience-item:last-child, .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .header-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-        }
-
-        .item h3 {
-            margin: 0 0 4px 0;
-            font-size: 1.2rem;
-            color: #333;
-        }
-
-        .item .meta {
-            font-style: italic;
-            color: #777;
-            font-size: 0.9rem;
-            min-width: 150px;
-            text-align: right;
-        }
-
-        .item .role {
-            font-weight: 600;
-            color: #444;
-            display: block;
-            margin-bottom: 4px;
-            font-size: 1rem;
-        }
-
-        .item p {
-            margin: 5px 0;
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        ul {
-            margin-top: 5px;
-            padding-left: 20px;
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        li {
-            margin-bottom: 4px;
-        }
-
-        /* Tags */
-        .tags span {
-            display: inline-block;
-            background: #eef2f5;
-            color: #555;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 5px;
+            align-items: center;
             margin-bottom: 5px;
-            border: 1px solid #e1e4e8;
         }
 
-        /* Footer */
+        .title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2d3436;
+        }
+
+        .date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #b2bec3;
+            background: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #f1f2f6;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--primary-accent);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        p.desc {
+            font-size: 0.95rem;
+            color: #636e72;
+            margin: 0;
+        }
+
+        /* 技能标签 - 科技感 */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background: rgba(108, 92, 231, 0.08);
+            color: var(--primary-accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(108, 92, 231, 0.1);
+        }
+
+        .tag:hover {
+            background: var(--primary-accent);
+            color: white;
+        }
+
+        /* 底部 */
         footer {
             text-align: center;
+            padding: 30px;
+            color: #b2bec3;
             font-size: 0.85rem;
-            color: #999;
-            margin-top: 40px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
         }
 
-        @media (max-width: 600px) {
-            .container { margin: 0; border-radius: 0; padding: 25px 20px; }
-            .item-header { flex-direction: column; }
-            .item .meta { text-align: left; margin-top: 2px; }
+        /* 移动端适配 */
+        @media (max-width: 850px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .sidebar {
+                position: static;
+                text-align: center;
+            }
+            .header-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
+    <div class="layout-grid">
+        <aside class="sidebar">
             <img src="avatar.png" alt="Tongyu Wu" class="avatar">
             <h1>Tongyu Wu</h1>
-            <p class="subtitle">Master Candidate in Data Science @ Tsinghua University</p>
+            <span class="role">Data Science & Economics</span>
             
-            <div class="contact-info">
-                <a href="mailto:tongyuwu14159@outlook.com"><i class="fas fa-envelope"></i> Email</a>
-                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </header>
-
-        <div class="section">
-            <h2>About Me</h2>
-            <p>
-                I am a Master's student at Tsinghua SIGS, specializing in Data Science. 
-                With a background in Economics and Venture Capital, I am currently focused on <strong>Computational Physics</strong> and <strong>Algorithm Engineering</strong>. 
-                I aim to leverage data-driven approaches to solve complex physical simulation and optimization problems.
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>Education</h2>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Tsinghua University</h3>
-                    <span class="meta">Shenzhen | 2025 - 2028</span>
+            <div class="social-links">
+                <a href="mailto:tongyuwu14159@outlook.com" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/yourusername" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
                 </div>
-                <span class="role">M.S. in Data Science and Information Technology</span>
-            </div>
 
-            <div class="item">
-                <div class="item-header">
-                    <h3>Nanjing University</h3>
-                    <span class="meta">Nanjing | 2021 - 2025</span>
-                </div>
-                <span class="role">B.Econ. in Industrial Economics</span>
+            <div class="quick-info">
+                <div><i class="fas fa-university"></i> Tsinghua University</div>
+                <div><i class="fas fa-map-marker-alt"></i> Shenzhen, China</div>
+                <div><i class="fas fa-code"></i> Python, SQL, C</div>
             </div>
+        </aside>
 
-            <div class="item">
-                <div class="item-header">
-                    <h3>Tohoku University</h3>
-                    <span class="meta">Sendai, Japan | 2024.04 - 2024.09</span>
-                </div>
-                <span class="role">Exchange Student</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Experience</h2>
+        <main class="main-content">
             
-            <div class="item">
-                <div class="item-header">
-                    <h3>Green Pine Capital</h3>
-                    <span class="meta">Shenzhen | 2025.06 - 2025.09</span>
-                </div>
-                <span class="role">Investment Intern</span>
-                <p><strong>Focus:</strong> AI, Intelligent Manufacturing, Edge Computing, Robotics.</p>
-            </div>
+            <section class="card">
+                <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
+                <p class="desc">
+                    I am a Master's student at <strong>Tsinghua SIGS</strong>, specializing in Data Science with a unique background in Economics and Venture Capital. Currently, I am pivoting my focus towards <strong>Computational Physics</strong> and <strong>Algorithm Engineering</strong>. 
+                </p>
+                <br>
+                <p class="desc">
+                    My goal is to leverage data-driven approaches to solve complex physical simulation problems, bridging the gap between theoretical models and real-world applications.
+                </p>
+            </section>
 
-            <div class="item">
-                <div class="item-header">
-                    <h3>BlueRun Ventures</h3>
-                    <span class="meta">Beijing | 2023.05 - 2023.09</span>
+            <section class="card">
+                <h2><i class="fas fa-laptop-code"></i> Selected Projects</h2>
+                
+                <div class="experience-item">
+                    <div class="header-row">
+                        <span class="title">TARC_AutoSim</span>
+                        <span class="date">Python & EnergyPlus</span>
+                    </div>
+                    <p class="desc">A framework automating simulations for Temperature-Adaptive Radiative Coating (TARC).</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">EnergyPlus</span>
+                        <span class="tag">Simulation</span>
+                        <span class="tag">Research</span>
+                    </div>
                 </div>
-                <span class="role">Research Intern</span>
-                <p><strong>Focus:</strong> Robotics, Asset Management.</p>
-            </div>
-        </div>
 
-        <div class="section">
-            <h2>Projects</h2>
-            
-            <div class="item">
-                <div class="item-header">
-                    <h3>TARC_AutoSim: Automated Building Energy Simulation</h3>
-                    <span class="meta">Python & EnergyPlus</span>
+                <div class="experience-item">
+                    <div class="header-row">
+                        <span class="title">Predictive Modeling Optimization</span>
+                        <span class="date">Machine Learning</span>
+                    </div>
+                    <p class="desc">Designed online evaluation metrics and model update strategies to handle concept drift in data streams.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Concept Drift</span>
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Optimization</span>
+                    </div>
                 </div>
-                <p>A Python framework automating EnergyPlus simulations for Temperature-Adaptive Radiative Coating (TARC) materials. Modeled energy consumption across varying climate zones.</p>
-                <div class="tags">
-                    <span>Python</span>
-                    <span>EnergyPlus</span>
-                    <span>OpenStudio</span>
-                    <span>Simulation</span>
-                </div>
-            </div>
+            </section>
 
-            <div class="item">
-                <div class="item-header">
-                    <h3>Data-Driven Predictive Modeling Optimization</h3>
-                    <span class="meta">Machine Learning</span>
+            <section class="card">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                
+                <div class="education-item">
+                    <div class="header-row">
+                        <span class="title">Tsinghua University</span>
+                        <span class="date">2025 - 2028</span>
+                    </div>
+                    <span class="subtitle">M.S. in Data Science and Information Technology</span>
+                    <p class="desc">Shenzhen International Graduate School</p>
                 </div>
-                <p>Addressed model degradation caused by concept drift. Designed online evaluation metrics and a combined model update strategy to enhance adaptability.</p>
-                <div class="tags">
-                    <span>Concept Drift</span>
-                    <span>Model Optimization</span>
-                    <span>Data Analysis</span>
+
+                <div class="education-item">
+                    <div class="header-row">
+                        <span class="title">Nanjing University</span>
+                        <span class="date">2021 - 2025</span>
+                    </div>
+                    <span class="subtitle">B.Econ. in Industrial Economics</span>
+                    <p class="desc">GPA: 4.35 / 5.00</p>
                 </div>
-            </div>
-        </div>
 
-        <div class="section">
-            <h2>Skills</h2>
-            <div class="item">
-                <p><strong>Tech Stack:</strong> Python, SQL, C, EnergyPlus, Wind/iFinD, LaTeX.</p>
-                <p><strong>Languages:</strong> Chinese, English, Japanese.</p>
-            </div>
-        </div>
+                <div class="education-item">
+                    <div class="header-row">
+                        <span class="title">Tohoku University</span>
+                        <span class="date">2024.04 - 09</span>
+                    </div>
+                    <span class="subtitle">Exchange Student (IPLA Program)</span>
+                    <p class="desc">Sendai, Japan</p>
+                </div>
+            </section>
 
-        <footer>
-            <p>&copy; 2026 Tongyu Wu. Hosted on GitHub Pages.</p>
-        </footer>
+            <section class="card">
+                <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="header-row">
+                        <span class="title">Songhe Capital (松禾资本)</span>
+                        <span class="date">Jun - Sep 2025</span>
+                    </div>
+                    <span class="subtitle">Investment Intern</span>
+                    <div class="tech-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Robotics</span>
+                        <span class="tag">Intelligent Mfg</span>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="header-row">
+                        <span class="title">BlueRun Ventures (蓝驰创投)</span>
+                        <span class="date">May - Sep 2023</span>
+                    </div>
+                    <span class="subtitle">Research Intern</span>
+                    <div class="tech-tags">
+                        <span class="tag">Robotics Industry</span>
+                        <span class="tag">Market Research</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-layer-group"></i> Skills</h2>
+                <div style="margin-bottom: 15px;">
+                    <span class="subtitle" style="display:inline; margin-right:10px;">Tech Stack:</span>
+                    <div class="tech-tags" style="display:inline-flex;">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">C</span>
+                        <span class="tag">EnergyPlus</span>
+                        <span class="tag">LaTeX</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="subtitle" style="display:inline; margin-right:10px;">Languages:</span>
+                    <span class="desc">Chinese (Native), English (IELTS 6.5), Japanese (Basic)</span>
+                </div>
+            </section>
+
+        </main>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Tongyu Wu. Designed with <i class="fas fa-code" style="color:var(--primary-accent)"></i> & <i class="fas fa-heart" style="color:var(--primary-accent)"></i>.</p>
+    </footer>
 
 </body>
 </html>
