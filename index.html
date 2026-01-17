@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页 | [你的名字]</title>
+    <style>
+        :root {
+            --primary-color: #5c2d91; /* 清华紫风格 */
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --section-bg: #fff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .section {
+            background: var(--section-bg);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .item .meta {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .tags span {
+            display: inline-block;
+            background: #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 40px 0; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>[你的名字]</h1>
+            <p>清华大学深圳国际研究生院 · 数据科学与信息技术硕士</p>
+            <p>Email: [your_email@example.com] | GitHub: <a href="https://github.com/[your_username]">@[your_username]</a></p>
+        </header>
+
+        <div class="section">
+            <h2>关于我</h2>
+            <p>
+                我是清华大学深圳国际研究生院（Tsinghua SIGS）2025级硕士研究生。
+                拥有金融与理工科的复合背景，目前正致力于将数据科学方法应用于物理仿真与量化分析。
+                我的目标是结合算法能力与行业洞察，解决复杂的跨学科问题。
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>教育经历</h2>
+            <div class="item">
+                <h3>清华大学深圳国际研究生院 (Tsinghua SIGS)</h3>
+                <div class="meta">2025 - 2028 (预计) | 硕士 | 数据科学和信息技术</div>
+                <p><strong>核心课程/研究方向：</strong> 物理纳米器件仿真、超材料（Metamaterials）、辐射制冷技术。</p>
+            </div>
+            <div class="item">
+                <h3>[你的本科学校名称]</h3>
+                <div class="meta">[开始年份] - [结束年份] | 学士 | 金融学/相关专业</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>项目与研究</h2>
+            
+            <div class="item">
+                <h3>TARC_AutoSim: 自动化建筑能耗仿真系统</h3>
+                <div class="meta">2025.12 - 至今 | Python, EnergyPlus, OpenStudio</div>
+                <p>针对温度自适应辐射制冷涂层（TARC）开发的自动化仿真框架。</p>
+                <ul>
+                    <li>利用 <code>eppy</code> 库操作 EnergyPlus IDF 文件，实现参数化建模。</li>
+                    <li>构建 Python 脚本自动化运行全年能耗模拟，分析不同气候下的节能潜力。</li>
+                    <li>涉及技术：SketchUp 建模, OpenStudio 接口, Python 数据分析。</li>
+                </ul>
+                <div class="tags">
+                    <span>Python</span>
+                    <span>EnergyPlus</span>
+                    <span>Simulation</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <h3>超材料辐射制冷研究 (Dong-Lab)</h3>
+                <div class="meta">2025.09 - 至今 | 实验室研究</div>
+                <p>研究基于超材料的辐射制冷技术在建筑节能中的应用，负责热阻网络分析与论文图表绘制。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>工作与实习经历</h2>
+            <div class="item">
+                <h3>[美元基金名称] | 投研实习生</h3>
+                <div class="meta">2025.10 - 至今 | 二级市场硬件方向</div>
+                <ul>
+                    <li>负责光模块与激光雷达产业链研究，覆盖 Fujikura, Sumitomo 等海外标的。</li>
+                    <li>深入分析 EML, CW-LD, VCSEL 等激光芯片技术路线及市场格局。</li>
+                    <li>撰写 Investment Memo，搭建公司估值模型。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>技能栈</h2>
+            <div class="tags">
+                <span>Python (Pandas, Numpy)</span>
+                <span>EnergyPlus/OpenStudio</span>
+                <span>SketchUp</span>
+                <span>Financial Modeling</span>
+                <span>Investment Research</span>
+                <span>LaTeX</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 [你的名字]. Hosted on GitHub Pages.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
