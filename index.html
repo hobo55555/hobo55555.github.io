@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tongyu Wu | Data Science & Finance</title>
+    <title>Tongyu Wu | Data Science Portfolio</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* 配色方案：深邃、科技、优雅 */
-            --primary-accent: #6c5ce7; /* 更有活力的紫色 */
-            --secondary-accent: #00cec9; /* 科技青，用于高亮 */
+            /* 更有质感的配色方案 */
+            --primary: #6c5ce7; /* 活力紫 */
+            --primary-dark: #5c2d91; /* 清华紫 */
             --text-main: #2d3436;
             --text-muted: #636e72;
-            --bg-glass: rgba(255, 255, 255, 0.85);
-            --bg-glass-strong: rgba(255, 255, 255, 0.95);
-            --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --bg-glass: rgba(255, 255, 255, 0.85); /* 玻璃背景透明度 */
+            --bg-glass-hover: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
         }
 
-        * {
-            box-sizing: border-box;
-            transition: all 0.2s ease;
-        }
+        * { box-sizing: border-box; transition: all 0.3s ease; }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.7;
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            /* 背景图处理 */
+            /* 背景图设置 */
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
@@ -42,37 +39,36 @@
             min-height: 100vh;
         }
 
-        /* 页面遮罩，增加文字可读性 */
+        /* 页面轻微遮罩，保证文字可读性 */
         body::before {
             content: '';
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(240, 243, 250, 0.3); /* 淡淡的蓝色遮罩 */
+            background: rgba(240, 243, 250, 0.4); 
             z-index: -1;
         }
 
-        .layout-grid {
+        .layout-container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 60px 20px;
             display: grid;
-            grid-template-columns: 320px 1fr; /* 左窄右宽 */
+            grid-template-columns: 320px 1fr; /* 左侧固定320px，右侧自适应 */
             gap: 40px;
             align-items: start;
         }
 
-        /* === 左侧边栏 (Profile Sidebar) === */
+        /* === 左侧边栏 (Sidebar) === */
         .sidebar {
-            background: var(--bg-glass-strong);
+            background: var(--bg-glass-hover);
             padding: 40px 30px;
             border-radius: 20px;
             text-align: center;
-            position: sticky;
-            top: 40px; /* 随页面滚动悬浮 */
+            position: sticky; /* 核心：随页面滚动固定 */
+            top: 40px;
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: var(--shadow-soft);
+            box-shadow: var(--shadow);
         }
 
         .avatar {
@@ -81,40 +77,35 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #fff;
-            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.2);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
             margin-bottom: 25px;
-            transition: transform 0.3s ease;
-        }
-
-        .avatar:hover {
-            transform: scale(1.05);
         }
 
         .sidebar h1 {
             font-size: 1.8rem;
             font-weight: 700;
             margin: 0 0 10px 0;
-            letter-spacing: -0.5px;
+            color: #2c3e50;
         }
 
-        .sidebar .role {
-            font-size: 0.95rem;
-            color: var(--primary-accent);
-            font-weight: 600;
-            margin-bottom: 25px;
+        .role {
             display: block;
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 30px;
         }
 
-        .social-links {
+        .contact-links {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
         }
 
-        .social-btn {
-            width: 40px;
-            height: 40px;
+        .icon-btn {
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: #f1f2f6;
             color: var(--text-main);
@@ -122,11 +113,11 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 1.1rem;
         }
 
-        .social-btn:hover {
-            background: var(--primary-accent);
+        .icon-btn:hover {
+            background: var(--primary);
             color: #fff;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
@@ -134,24 +125,19 @@
 
         .quick-info {
             text-align: left;
-            font-size: 0.9rem;
-            color: var(--text-muted);
             border-top: 1px solid #eee;
             padding-top: 25px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
         
         .quick-info div {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
-        .quick-info i {
-            width: 20px;
-            text-align: center;
-            color: var(--primary-accent);
-        }
+        .quick-info i { color: var(--primary); width: 20px; text-align: center; }
 
         /* === 右侧主内容 (Main Content) === */
         .main-content {
@@ -165,86 +151,72 @@
             padding: 35px;
             border-radius: 16px;
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-            background: var(--bg-glass-strong);
+            transform: translateY(-3px);
+            background: var(--bg-glass-hover);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         h2 {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--text-main);
+            color: #2c3e50;
             margin-top: 0;
             margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(0,0,0,0.05);
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(108, 92, 231, 0.1);
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
-        h2 i {
-            color: var(--primary-accent);
-        }
+        h2 i { color: var(--primary); }
 
-        /* 经历列表样式 */
-        .experience-item, .education-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px dashed #e1e4e8;
+        /* 内容列表样式 */
+        .list-item {
+            margin-bottom: 30px;
         }
-
-        .experience-item:last-child, .education-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
+        .list-item:last-child { margin-bottom: 0; }
 
         .header-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
         }
 
-        .title {
+        .item-title {
+            font-size: 1.15rem;
             font-weight: 700;
-            font-size: 1.1rem;
             color: #2d3436;
         }
 
-        .date {
+        .item-date {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: #b2bec3;
             background: #fff;
-            padding: 2px 8px;
-            border-radius: 4px;
-            border: 1px solid #f1f2f6;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #dfe6e9;
         }
 
-        .subtitle {
-            font-size: 0.95rem;
-            color: var(--primary-accent);
-            margin-bottom: 8px;
+        .item-subtitle {
             display: block;
-        }
-
-        p.desc {
             font-size: 0.95rem;
-            color: #636e72;
-            margin: 0;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        /* 技能标签 - 科技感 */
-        .tech-tags {
+        p { margin: 0 0 10px 0; line-height: 1.7; font-size: 0.95rem; }
+
+        /* 标签样式 (Tags) */
+        .tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
@@ -255,60 +227,49 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             background: rgba(108, 92, 231, 0.08);
-            color: var(--primary-accent);
-            padding: 4px 10px;
+            color: var(--primary-dark);
+            padding: 5px 12px;
             border-radius: 6px;
-            border: 1px solid rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.15);
         }
-
-        .tag:hover {
-            background: var(--primary-accent);
-            color: white;
-        }
+        .tag:hover { background: var(--primary); color: #fff; }
 
         /* 底部 */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             color: #b2bec3;
             font-size: 0.85rem;
         }
 
         /* 移动端适配 */
         @media (max-width: 850px) {
-            .layout-grid {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
-            .sidebar {
-                position: static;
-                text-align: center;
-            }
-            .header-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
+            .layout-container { grid-template-columns: 1fr; padding: 20px; }
+            .sidebar { position: static; text-align: center; margin-bottom: 20px; }
+            .quick-info { text-align: center; }
+            .quick-info div { justify-content: center; }
+            .header-row { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="layout-grid">
+    <div class="layout-container">
+        
         <aside class="sidebar">
             <img src="avatar.png" alt="Tongyu Wu" class="avatar">
             <h1>Tongyu Wu</h1>
-            <span class="role">Data Science & Economics</span>
+            <span class="role">Data Science & Finance</span>
             
-            <div class="social-links">
-                <a href="mailto:tongyuwu14159@outlook.com" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/yourusername" target="_blank" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
-                </div>
+            <div class="contact-links">
+                <a href="mailto:tongyuwu14159@outlook.com" class="icon-btn" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/yourusername" target="_blank" class="icon-btn" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
 
             <div class="quick-info">
+                <div><i class="fas fa-graduation-cap"></i> Master Candidate</div>
                 <div><i class="fas fa-university"></i> Tsinghua University</div>
                 <div><i class="fas fa-map-marker-alt"></i> Shenzhen, China</div>
-                <div><i class="fas fa-code"></i> Python, SQL, C</div>
             </div>
         </aside>
 
@@ -316,121 +277,114 @@
             
             <section class="card">
                 <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
-                <p class="desc">
-                    I am a Master's student at <strong>Tsinghua SIGS</strong>, specializing in Data Science with a unique background in Economics and Venture Capital. Currently, I am pivoting my focus towards <strong>Computational Physics</strong> and <strong>Algorithm Engineering</strong>. 
+                <p>
+                    I am a Master's student at <strong>Tsinghua SIGS</strong>, specializing in Data Science. 
+                    With a background in Economics and Venture Capital, I am currently focused on <strong>Computational Physics</strong> and <strong>Algorithm Engineering</strong>.
                 </p>
-                <br>
-                <p class="desc">
-                    My goal is to leverage data-driven approaches to solve complex physical simulation problems, bridging the gap between theoretical models and real-world applications.
+                <p>
+                    I aim to leverage data-driven approaches to solve complex physical simulation and optimization problems.
                 </p>
-            </section>
-
-            <section class="card">
-                <h2><i class="fas fa-laptop-code"></i> Selected Projects</h2>
-                
-                <div class="experience-item">
-                    <div class="header-row">
-                        <span class="title">TARC_AutoSim</span>
-                        <span class="date">Python & EnergyPlus</span>
-                    </div>
-                    <p class="desc">A framework automating simulations for Temperature-Adaptive Radiative Coating (TARC).</p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">EnergyPlus</span>
-                        <span class="tag">Simulation</span>
-                        <span class="tag">Research</span>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="header-row">
-                        <span class="title">Predictive Modeling Optimization</span>
-                        <span class="date">Machine Learning</span>
-                    </div>
-                    <p class="desc">Designed online evaluation metrics and model update strategies to handle concept drift in data streams.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Concept Drift</span>
-                        <span class="tag">Algorithms</span>
-                        <span class="tag">Optimization</span>
-                    </div>
-                </div>
             </section>
 
             <section class="card">
                 <h2><i class="fas fa-graduation-cap"></i> Education</h2>
                 
-                <div class="education-item">
+                <div class="list-item">
                     <div class="header-row">
-                        <span class="title">Tsinghua University</span>
-                        <span class="date">2025 - 2028</span>
+                        <span class="item-title">Tsinghua University</span>
+                        <span class="item-date">2025 - 2028</span>
                     </div>
-                    <span class="subtitle">M.S. in Data Science and Information Technology</span>
-                    <p class="desc">Shenzhen International Graduate School</p>
+                    <span class="item-subtitle">M.S. in Data Science and Information Technology</span>
+                    <p>Shenzhen International Graduate School</p>
                 </div>
 
-                <div class="education-item">
+                <div class="list-item">
                     <div class="header-row">
-                        <span class="title">Nanjing University</span>
-                        <span class="date">2021 - 2025</span>
+                        <span class="item-title">Nanjing University</span>
+                        <span class="item-date">2021 - 2025</span>
                     </div>
-                    <span class="subtitle">B.Econ. in Industrial Economics</span>
-                    <p class="desc">GPA: 4.35 / 5.00</p>
+                    <span class="item-subtitle">B.Econ. in Industrial Economics</span>
                 </div>
 
-                <div class="education-item">
+                <div class="list-item">
                     <div class="header-row">
-                        <span class="title">Tohoku University</span>
-                        <span class="date">2024.04 - 09</span>
+                        <span class="item-title">Tohoku University</span>
+                        <span class="item-date">2024.04 - 09</span>
                     </div>
-                    <span class="subtitle">Exchange Student (IPLA Program)</span>
-                    <p class="desc">Sendai, Japan</p>
+                    <span class="item-subtitle">Exchange Student</span>
+                    <p>Sendai, Japan</p>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-code"></i> Selected Projects</h2>
+                
+                <div class="list-item">
+                    <div class="header-row">
+                        <span class="item-title">TARC_AutoSim</span>
+                        <span class="item-date">Python & EnergyPlus</span>
+                    </div>
+                    <p>A Python framework automating EnergyPlus simulations for Temperature-Adaptive Radiative Coating (TARC) materials. Modeled energy consumption across varying climate zones.</p>
+                    <div class="tag-container">
+                        <span class="tag">Python</span>
+                        <span class="tag">EnergyPlus</span>
+                        <span class="tag">OpenStudio</span>
+                        <span class="tag">Simulation</span>
+                    </div>
+                </div>
+
+                <div class="list-item">
+                    <div class="header-row">
+                        <span class="item-title">Predictive Modeling Optimization</span>
+                        <span class="item-date">Machine Learning</span>
+                    </div>
+                    <p>Addressed model degradation caused by concept drift. Designed online evaluation metrics and a combined model update strategy to enhance adaptability.</p>
+                    <div class="tag-container">
+                        <span class="tag">Concept Drift</span>
+                        <span class="tag">Model Optimization</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
                 </div>
             </section>
 
             <section class="card">
                 <h2><i class="fas fa-briefcase"></i> Experience</h2>
                 
-                <div class="experience-item">
+                <div class="list-item">
                     <div class="header-row">
-                        <span class="title">Songhe Capital (松禾资本)</span>
-                        <span class="date">Jun - Sep 2025</span>
+                        <span class="item-title">Green Pine Capital</span>
+                        <span class="item-date">Jun - Sep 2025</span>
                     </div>
-                    <span class="subtitle">Investment Intern</span>
-                    <div class="tech-tags">
-                        <span class="tag">AI</span>
-                        <span class="tag">Robotics</span>
-                        <span class="tag">Intelligent Mfg</span>
-                    </div>
+                    <span class="item-subtitle">Investment Intern</span>
+                    <p><strong>Focus:</strong> AI, Intelligent Manufacturing, Edge Computing, Robotics.</p>
                 </div>
 
-                <div class="experience-item">
+                <div class="list-item">
                     <div class="header-row">
-                        <span class="title">BlueRun Ventures (蓝驰创投)</span>
-                        <span class="date">May - Sep 2023</span>
+                        <span class="item-title">BlueRun Ventures</span>
+                        <span class="item-date">May - Sep 2023</span>
                     </div>
-                    <span class="subtitle">Research Intern</span>
-                    <div class="tech-tags">
-                        <span class="tag">Robotics Industry</span>
-                        <span class="tag">Market Research</span>
-                    </div>
+                    <span class="item-subtitle">Research Intern</span>
+                    <p><strong>Focus:</strong> Robotics, Asset Management.</p>
                 </div>
             </section>
 
             <section class="card">
                 <h2><i class="fas fa-layer-group"></i> Skills</h2>
                 <div style="margin-bottom: 15px;">
-                    <span class="subtitle" style="display:inline; margin-right:10px;">Tech Stack:</span>
-                    <div class="tech-tags" style="display:inline-flex;">
+                    <span class="item-subtitle">Tech Stack</span>
+                    <div class="tag-container">
                         <span class="tag">Python</span>
                         <span class="tag">SQL</span>
                         <span class="tag">C</span>
                         <span class="tag">EnergyPlus</span>
+                        <span class="tag">Wind/iFinD</span>
                         <span class="tag">LaTeX</span>
                     </div>
                 </div>
                 <div>
-                    <span class="subtitle" style="display:inline; margin-right:10px;">Languages:</span>
-                    <span class="desc">Chinese (Native), English (IELTS 6.5), Japanese (Basic)</span>
+                    <span class="item-subtitle">Languages</span>
+                    <p>Chinese, English, Japanese</p>
                 </div>
             </section>
 
@@ -438,7 +392,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Tongyu Wu. Designed with <i class="fas fa-code" style="color:var(--primary-accent)"></i> & <i class="fas fa-heart" style="color:var(--primary-accent)"></i>.</p>
+        <p>&copy; 2026 Tongyu Wu. Hosted on GitHub Pages.</p>
     </footer>
 
 </body>
